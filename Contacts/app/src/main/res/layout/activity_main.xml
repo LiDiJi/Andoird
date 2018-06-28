@@ -7,28 +7,53 @@
     tools:context="com.ldj.wow.contacts.MainActivity"
     package="cc.solart.wave">
 
-    <android.support.design.widget.AppBarLayout
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme"-->
+        <!--android:id="@+id/appBarLayout">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@android:color/holo_green_light"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+
+    <!--</android.support.design.widget.AppBarLayout>-->
+
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme"
-        android:id="@+id/appBarLayout">
+        android:layout_alignParentStart="true"
+        android:background="@drawable/search_shape"
+        android:iconifiedByDefault="true"
+        android:queryHint="请输入姓名">
+    </SearchView>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-    </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/search_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/recView"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="搜索"
+        android:textSize="15dp"
+        android:visibility="visible" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recView"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/appBarLayout"
+        android:layout_below="@+id/searchView"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="top|center" />
+        app:layout_anchorGravity="top|center">
+
+    </android.support.v7.widget.RecyclerView>
 
     <include
         android:id="@+id/include"
@@ -39,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/fab"
-        android:layout_below="@+id/appBarLayout" />
+        android:layout_below="@+id/searchView" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
