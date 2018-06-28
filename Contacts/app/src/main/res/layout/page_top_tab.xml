@@ -17,79 +17,124 @@
         android:layout_below="@+id/top_tab">
     </SearchView>
     <LinearLayout
-        android:id="@+id/id_switch_tab_ll"
+        android:id="@+id/switch_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:baselineAligned="false"
-        >
-
+        android:baselineAligned="false">
         <LinearLayout
-            android:id="@+id/id_tab_chat_ll"
+            android:id="@+id/lin_tab_cont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:focusable="false"
+            android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dip" >
 
             <TextView
-                android:id="@+id/id_chat_tv"
+                android:id="@+id/cont_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="通讯录"
-                android:textColor="#000000"
-                android:textSize="15dip"/>
+                android:textColor="#00CD66"
+                android:textSize="18dip"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/id_tab_friend_ll"
+            android:id="@+id/lin_tab_rec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dip"
             android:saveEnabled="false" >
 
             <TextView
-                android:id="@+id/id_friend_tv"
+                android:id="@+id/rec_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="通话记录"
                 android:textColor="#000000"
-                android:textSize="15dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/id_tab_contacts_ll"
+            android:id="@+id/lin_tab_cal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
+            android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dip">
 
             <TextView
-                android:id="@+id/id_contacts_tv"
+                android:id="@+id/cal_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="日历"
                 android:textColor="#000000"
-                android:textSize="15dip"/>
+                android:textSize="18dip"/>
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/id_tab_line_iv"
-        android:layout_width="127dp"
-        android:layout_height="5dp"
-        android:background="@drawable/selected_tab"
-        android:contentDescription="tab"></ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/tab_line">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/tab_line_left"
+                android:layout_width="100dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selected_tab"
+                android:contentDescription="tab">
+            </ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/tab_line_middle"
+                android:layout_width="100dp"
+                android:layout_height="5dp"
+                android:visibility="invisible"
+                android:background="@drawable/selected_tab"
+                android:contentDescription="tab">
+            </ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/tab_line_right"
+                android:layout_width="100dp"
+                android:layout_height="5dp"
+                android:visibility="invisible"
+                android:background="@drawable/selected_tab"
+                android:contentDescription="tab">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

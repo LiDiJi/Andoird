@@ -1,6 +1,8 @@
 package com.ldj.wow.contacts;
 
 import android.graphics.Color;
+import android.nfc.Tag;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,6 +22,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,11 +35,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cc.solart.wave.WaveSideBarView;
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     public WaveSideBarView mWave;
     public RecyclerView mRecView;
     public SearchView mSearchView;
-
+    private LinearLayout lin_tab_cont;
+    private LinearLayout lin_tab_cal;
+    private LinearLayout lin_tab_rec;
+    private TextView cont_tab_text;
+    private TextView cal_tab_text;
+    private TextView rec_tab_text;
+    private ImageView tab_line_left;
+    private ImageView tab_line_mid;
+    private ImageView tab_line_right;
+    private int Scr_width;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +61,15 @@ public class MainActivity extends FragmentActivity {
         mRecView = (RecyclerView) findViewById(R.id.recView);
         mRecView.setLayoutManager(new LinearLayoutManager(this));
         mRecView.setAdapter(new NormalAdapter(data));
+        ViewTreeObserver BGob = mRecView.getViewTreeObserver();
+        BGob.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Scr_width = mRecView.getMeasuredWidth();
+                mRecView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+        setSelected();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +78,7 @@ public class MainActivity extends FragmentActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     @Override
@@ -107,6 +131,57 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    private void setSelected(){
+        lin_tab_cont = (LinearLayout) findViewById(R.id.lin_tab_cont);
+        lin_tab_cal = (LinearLayout) findViewById(R.id.lin_tab_cal);
+        lin_tab_rec = (LinearLayout) findViewById(R.id.lin_tab_rec);
+        cont_tab_text = (TextView) findViewById(R.id.cont_tv);
+        cal_tab_text = (TextView) findViewById(R.id.cal_tv);
+        rec_tab_text = (TextView) findViewById(R.id.rec_tv);
+        tab_line_left = (ImageView) findViewById(R.id.tab_line_left);
+        tab_line_mid = (ImageView) findViewById(R.id.tab_line_middle);
+        tab_line_right = (ImageView) findViewById(R.id.tab_line_right);
+        lin_tab_cont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cont_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                cal_tab_text.setTextColor(Color.parseColor("#000000"));
+                rec_tab_text.setTextColor(Color.parseColor("#000000"));
+                tab_line_left.setVisibility(View.VISIBLE);
+                tab_line_mid.setVisibility(View.INVISIBLE);
+                tab_line_right.setVisibility(View.INVISIBLE);
+                Toast toast = Toast.makeText(getApplicationContext(), "通讯录", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+        lin_tab_cal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cont_tab_text.setTextColor(Color.parseColor("#000000"));
+                cal_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                rec_tab_text.setTextColor(Color.parseColor("#000000"));
+                tab_line_left.setVisibility(View.INVISIBLE);
+                tab_line_mid.setVisibility(View.INVISIBLE);
+                tab_line_right.setVisibility(View.VISIBLE);
+                Toast toast = Toast.makeText(getApplicationContext(), "日历", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+        lin_tab_rec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cont_tab_text.setTextColor(Color.parseColor("#000000"));
+                cal_tab_text.setTextColor(Color.parseColor("#000000"));
+                rec_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                tab_line_left.setVisibility(View.INVISIBLE);
+                tab_line_mid.setVisibility(View.VISIBLE);
+                tab_line_right.setVisibility(View.INVISIBLE);
+                Toast toast = Toast.makeText(getApplicationContext(), "通讯记录", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+    }
 
 
 }
