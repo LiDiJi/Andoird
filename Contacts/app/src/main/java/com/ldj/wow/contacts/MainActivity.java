@@ -1,19 +1,28 @@
 package com.ldj.wow.contacts;
 
+import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +30,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cc.solart.wave.WaveSideBarView;
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
     public WaveSideBarView mWave;
     public RecyclerView mRecView;
     public SearchView mSearchView;
-    public TextView mSearchText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         List<String> data = new ArrayList();
         data.add("J黎丁嘉");
         data.add("L梁沛霖");
@@ -39,12 +47,11 @@ public class MainActivity extends AppCompatActivity {
         mRecView = (RecyclerView) findViewById(R.id.recView);
         mRecView.setLayoutManager(new LinearLayoutManager(this));
         mRecView.setAdapter(new NormalAdapter(data));
-        mSearchText = (TextView) findViewById(R.id.search_Text);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "onClick", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -58,12 +65,11 @@ public class MainActivity extends AppCompatActivity {
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (!TextUtils.isEmpty(query)){
-                    Toast toast=Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT);
+                if (!TextUtils.isEmpty(query)) {
+                    Toast toast = Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT);
                     toast.show();
-                }
-                else {
-                    Toast toast=Toast.makeText(getApplicationContext(), "空搜索字符串", Toast.LENGTH_SHORT);
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "空搜索字符串", Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 return false;
@@ -71,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (mSearchView != null){
+                if (mSearchView != null) {
                     // 得到输入管理对象
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {
@@ -100,4 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
