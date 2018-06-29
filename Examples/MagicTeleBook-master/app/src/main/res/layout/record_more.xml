@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <at.markushi.ui.CircleButton
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:id="@+id/record_pw_call"
+        android:src="@mipmap/call_btn"
+        app:cb_color="#FF4081"
+        app:cb_pressedRingWidth="4dip" />
+    <at.markushi.ui.CircleButton
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:id="@+id/record_pw_sendmsg"
+        android:src="@mipmap/message_btn"
+        app:cb_color="#99CC00"
+        app:cb_pressedRingWidth="4dip" />
+    <at.markushi.ui.CircleButton
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:id="@+id/record_pw_edit"
+        android:src="@mipmap/edit_btn"
+        app:cb_color="#039be5"
+        app:cb_pressedRingWidth="4dip" />
+</LinearLayout>
+
+
+
