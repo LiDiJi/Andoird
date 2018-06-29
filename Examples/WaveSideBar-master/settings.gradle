@@ -1,1 +1,1 @@
-include ':app', ':wave'
+include ':app', ':WaveSideBar'

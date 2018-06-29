@@ -48,27 +48,17 @@ public class MainActivity extends AppCompatActivity {
     private ImageView tab_line_left;
     private ImageView tab_line_mid;
     private ImageView tab_line_right;
-    private int Scr_width;
+    private List<ContactModel> mContactModels;
+    private List<ContactModel> mShowModels;
+    private RecyclerView mRecyclerView;
+    private ContactsAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<String> data = new ArrayList();
-        data.add("J黎丁嘉");
-        data.add("L梁沛霖");
-        data.add("Z梁志聪 ");
         mWave = (WaveSideBarView) findViewById(R.id.side_view);
-        mRecView = (RecyclerView) findViewById(R.id.recView);
-        mRecView.setLayoutManager(new LinearLayoutManager(this));
-        mRecView.setAdapter(new NormalAdapter(data));
-        ViewTreeObserver BGob = mRecView.getViewTreeObserver();
-        BGob.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Scr_width = mRecView.getMeasuredWidth();
-                mRecView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
-        });
+        initData();
+        setRecyclerView();
         setSelected();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -183,5 +173,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initData() {
+        mContactModels = new ArrayList<>();
+        mShowModels = new ArrayList<>();
+        mContactModels.addAll(ContactModel.getContacts());
+        mShowModels.addAll(mContactModels);
+    }
 
+    private void setRecyclerView(){
+        mAdapter = new ContactsAdapter(mShowModels);
+        // RecyclerView设置相关
+        mRecyclerView = (RecyclerView) findViewById(R.id.recView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final PinnedHeaderDecoration decoration = new PinnedHeaderDecoration();
+        decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
+            @Override
+            public boolean create(RecyclerView parent, int adapterPosition) {
+                return true;
+            }
+        });
+        mRecyclerView.addItemDecoration(decoration);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void setWaresier(){
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mContactModels != null){
+            mContactModels.clear();
+            mContactModels = null;
+        }
+    }
 }
