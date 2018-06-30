@@ -42,7 +42,7 @@
             android:focusable="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dip"
+            android:padding="10dp"
             android:saveEnabled="false" >
 
             <TextView
@@ -64,7 +64,7 @@
             android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dip">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/cal_tv"
@@ -90,7 +90,7 @@
             <ImageView
                 android:id="@+id/tab_line_left"
                 android:layout_width="100dp"
-                android:layout_height="5dp"
+                android:layout_height="8dp"
                 android:layout_gravity="center"
                 android:background="@drawable/selected_tab"
                 android:contentDescription="tab">
@@ -104,7 +104,7 @@
             <ImageView
                 android:id="@+id/tab_line_middle"
                 android:layout_width="100dp"
-                android:layout_height="5dp"
+                android:layout_height="8dp"
                 android:visibility="invisible"
                 android:background="@drawable/selected_tab"
                 android:contentDescription="tab">
@@ -118,7 +118,7 @@
             <ImageView
                 android:id="@+id/tab_line_right"
                 android:layout_width="100dp"
-                android:layout_height="5dp"
+                android:layout_height="8dp"
                 android:visibility="invisible"
                 android:background="@drawable/selected_tab"
                 android:contentDescription="tab">

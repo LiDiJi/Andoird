@@ -1,38 +1,24 @@
 package com.ldj.wow.contacts;
 
 import android.graphics.Color;
-import android.nfc.Tag;
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.ldj.wow.contacts.Search.SearchEditText;
 import com.ldj.wow.contacts.Search.Trans2PinYinUtil;
 
@@ -43,7 +29,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public WaveSideBarView mWave;
-    public RecyclerView mRecView;
     public SearchView mSearchView;
     private LinearLayout lin_tab_cont;
     private LinearLayout lin_tab_cal;
@@ -64,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //设置状态栏随系统自动变化 （开源库：https://github.com/msdx/status-bar-compat）
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);
+
         mWave = (WaveSideBarView) findViewById(R.id.side_view);
         initData();
         setRecyclerView();
         setSearchView();
-        setSelected();
+        setSelectedTab();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setSelected(){
+    private void setSelectedTab(){
         lin_tab_cont = (LinearLayout) findViewById(R.id.lin_tab_cont);
         lin_tab_cal = (LinearLayout) findViewById(R.id.lin_tab_cal);
         lin_tab_rec = (LinearLayout) findViewById(R.id.lin_tab_rec);
@@ -176,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 tab_line_left.setVisibility(View.INVISIBLE);
                 tab_line_mid.setVisibility(View.VISIBLE);
                 tab_line_right.setVisibility(View.INVISIBLE);
-                Toast toast = Toast.makeText(getApplicationContext(), "通讯记录", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "通话记录", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
