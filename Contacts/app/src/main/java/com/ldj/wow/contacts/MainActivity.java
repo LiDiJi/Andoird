@@ -16,7 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -31,10 +33,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ldj.wow.contacts.Search.SearchEditText;
+import com.ldj.wow.contacts.Search.Trans2PinYinUtil;
+
+import cc.solart.wave.WaveSideBarView;
+import cc.solart.wave.WaveSideBarView.OnSelectIndexItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.solart.wave.WaveSideBarView;
 public class MainActivity extends AppCompatActivity {
     public WaveSideBarView mWave;
     public RecyclerView mRecView;
@@ -52,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private List<ContactModel> mShowModels;
     private RecyclerView mRecyclerView;
     private ContactsAdapter mAdapter;
+    private WaveSideBarView mWaveSideBarView;
+    private SearchEditText mSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mWave = (WaveSideBarView) findViewById(R.id.side_view);
         initData();
         setRecyclerView();
+        setSearchView();
         setSelected();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,34 +84,34 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        mSearchView = (SearchView) findViewById(R.id.searchView);
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if (!TextUtils.isEmpty(query)) {
-                    Toast toast = Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT);
-                    toast.show();
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "空搜索字符串", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (mSearchView != null) {
-                    // 得到输入管理对象
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        // 这将让键盘在所有的情况下都被隐藏，但是一般我们在点击搜索按钮后，输入法都会乖乖的自动隐藏的。
-                        imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0); // 输入法如果是显示状态，那么就隐藏输入法
-                    }
-                    mSearchView.clearFocus(); // 不获取焦点
-                }
-                return false;
-            }
-        });
+//        mSearchView = (SearchView) findViewById(R.id.searchView);
+//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                if (!TextUtils.isEmpty(query)) {
+//                    Toast toast = Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT);
+//                    toast.show();
+//                } else {
+//                    Toast toast = Toast.makeText(getApplicationContext(), "空搜索字符串", Toast.LENGTH_SHORT);
+//                    toast.show();
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if (mSearchView != null) {
+//                    // 得到输入管理对象
+//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    if (imm != null) {
+//                        // 这将让键盘在所有的情况下都被隐藏，但是一般我们在点击搜索按钮后，输入法都会乖乖的自动隐藏的。
+//                        imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0); // 输入法如果是显示状态，那么就隐藏输入法
+//                    }
+//                    mSearchView.clearFocus(); // 不获取焦点
+//                }
+//                return false;
+//            }
+//        });
         return true;
     }
 
@@ -194,11 +203,49 @@ public class MainActivity extends AppCompatActivity {
         });
         mRecyclerView.addItemDecoration(decoration);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        mWaveSideBarView = (WaveSideBarView) findViewById(R.id.main_side_bar);
+        mWaveSideBarView.setOnSelectIndexItemListener(new OnSelectIndexItemListener() {
+            @Override
+            public void onSelectIndexItem(String letter) {
+                for (int i=0; i<mContactModels.size(); i++) {
+                    if (mContactModels.get(i).getIndex().equals(letter)) {
+                        ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(i, 0);
+                        return;
+                    }
+                }
+            }
+        });
     }
 
-    private void setWaresier(){
+    private  void setSearchView(){
+        mSearch = (SearchEditText) findViewById(R.id.search_go);
+        mSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mShowModels.clear();
+                for (ContactModel model : mContactModels) {
+                    String str = Trans2PinYinUtil.trans2PinYin(model.getName());
+                    if (str.contains(s.toString()) || model.getName().contains(s.toString())) {
+                        mShowModels.add(model);
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -206,5 +253,6 @@ public class MainActivity extends AppCompatActivity {
             mContactModels.clear();
             mContactModels = null;
         }
-    }
+    };
+
 }

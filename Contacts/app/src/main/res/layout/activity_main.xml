@@ -7,6 +7,7 @@
     tools:context="com.ldj.wow.contacts.MainActivity"
     package="cc.solart.wave">
 
+
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -26,12 +27,33 @@
         android:id="@+id/top_tab"
         layout="@layout/page_top_tab" />
 
+    <com.ldj.wow.contacts.Search.SearchEditText
+        android:id="@+id/search_go"
+        android:layout_below="@+id/top_tab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/search_bg"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_search"
+        android:gravity="center_vertical"
+        android:hint="搜索"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textSize="16sp"
+        app:drawableDel="@drawable/ic_cance"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/top_tab"
+        android:layout_below="@+id/search_go"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center">
 
@@ -42,11 +64,13 @@
         layout="@layout/content_main" />
 
     <cc.solart.wave.WaveSideBarView
-        android:id="@+id/side_view"
+        android:id="@+id/main_side_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/fab"
-        android:layout_below="@+id/top_tab" />
+        android:padding="8dp"
+        android:layout_below="@+id/search_go"
+        app:sidebar_lazy_respond="false"
+        app:sidebar_text_color="@color/colorAccent"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

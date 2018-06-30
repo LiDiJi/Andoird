@@ -6,16 +6,6 @@
     android:divider="@drawable/line_shape"
     android:showDividers="end">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/search_shape"
-        android:iconifiedByDefault="true"
-        android:queryHint="请输入姓名"
-        android:layout_below="@+id/top_tab">
-    </SearchView>
     <LinearLayout
         android:id="@+id/switch_tab"
         android:layout_width="match_parent"
