@@ -7,7 +7,6 @@
     tools:context="com.ldj.wow.contacts.MainActivity"
     package="cc.solart.wave">
 
-
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -43,12 +42,11 @@
         layout="@layout/content_main" />
 
     <cc.solart.wave.WaveSideBarView
-        android:id="@+id/main_side_bar"
+        android:id="@+id/side_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        app:sidebar_lazy_respond="false"
-        app:sidebar_text_color="@color/colorAccent"/>
+        android:layout_alignBottom="@+id/fab"
+        android:layout_below="@+id/top_tab" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

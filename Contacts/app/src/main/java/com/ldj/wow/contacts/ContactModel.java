@@ -39,11 +39,6 @@ public class ContactModel {
         contacts.add(new ContactModel("潘嵘"));
         contacts.add(new ContactModel("余丰人"));
         contacts.add(new ContactModel("陈炬华"));
-        contacts.add(new ContactModel("K测试"));
-        contacts.add(new ContactModel("A测试"));
-        contacts.add(new ContactModel("E测试"));
-        contacts.add(new ContactModel("T测试"));
-        contacts.add(new ContactModel("えええ"));
         Collections.sort(contacts, new LetterComparator());
         return contacts;
     }

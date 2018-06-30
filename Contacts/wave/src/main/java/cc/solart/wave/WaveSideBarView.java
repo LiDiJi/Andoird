@@ -1,6 +1,5 @@
 package cc.solart.wave;
 
-
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,7 +29,7 @@ public class WaveSideBarView extends View {
     // 计算波浪贝塞尔曲线的角弧长值
     private static final double ANGLE = Math.PI * 45 / 180;
     private static final double ANGLE_R = Math.PI * 90 / 180;
-    private OnSelectIndexItemListener onSelectIndexItemListener;
+    private OnTouchLetterChangeListener listener;
 
     // 渲染字母表
     private List<String> mLetters;
@@ -156,8 +155,8 @@ public class WaveSideBarView extends View {
                 if (oldChoose != newChoose) {
                     if (newChoose >= 0 && newChoose < mLetters.size()) {
                         mChoose = newChoose;
-                        if (onSelectIndexItemListener != null) {
-                            onSelectIndexItemListener.onSelectIndexItem(mLetters.get(newChoose));
+                        if (listener != null) {
+                            listener.onLetterChange(mLetters.get(newChoose));
                         }
                     }
                 }
@@ -326,8 +325,8 @@ public class WaveSideBarView extends View {
                 if (mRatio==1f&&oldChoose != newChoose){
                     if (newChoose >= 0 && newChoose < mLetters.size()) {
                         mChoose = newChoose;
-                        if (onSelectIndexItemListener != null) {
-                            onSelectIndexItemListener.onSelectIndexItem(mLetters.get(newChoose));
+                        if (listener != null) {
+                            listener.onLetterChange(mLetters.get(newChoose));
                         }
                     }
                 }
@@ -338,7 +337,7 @@ public class WaveSideBarView extends View {
     }
 
 
-    /*public void setOnTouchLetterChangeListener(OnTouchLetterChangeListener listener) {
+    public void setOnTouchLetterChangeListener(OnTouchLetterChangeListener listener) {
         this.listener = listener;
     }
 
@@ -351,14 +350,7 @@ public class WaveSideBarView extends View {
         invalidate();
     }
 
-   public interface OnTouchLetterChangeListener {
+    public interface OnTouchLetterChangeListener {
         void onLetterChange(String letter);
-    }*/
-    public void setOnSelectIndexItemListener(OnSelectIndexItemListener onSelectIndexItemListener) {
-        this.onSelectIndexItemListener = onSelectIndexItemListener;
-    }
-
-    public interface OnSelectIndexItemListener {
-        void onSelectIndexItem(String letter);
     }
 }
