@@ -16,7 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -30,11 +32,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import cc.solart.wave.WaveSideBarView;
+import cc.solart.wave.WaveSideBarView.OnSelectIndexItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import cc.solart.wave.WaveSideBarView;
 public class MainActivity extends AppCompatActivity {
     public WaveSideBarView mWave;
     public RecyclerView mRecView;
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private List<ContactModel> mShowModels;
     private RecyclerView mRecyclerView;
     private ContactsAdapter mAdapter;
+    private WaveSideBarView mWaveSideBarView;
+    private SearchEditText mSearchEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,6 +198,46 @@ public class MainActivity extends AppCompatActivity {
         });
         mRecyclerView.addItemDecoration(decoration);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        mWaveSideBarView = (WaveSideBarView) findViewById(R.id.main_side_bar);
+        mWaveSideBarView.setOnSelectIndexItemListener(new OnSelectIndexItemListener() {
+            @Override
+            public void onSelectIndexItem(String letter) {
+                for (int i=0; i<mContactModels.size(); i++) {
+                    if (mContactModels.get(i).getIndex().equals(letter)) {
+                        ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(i, 0);
+                        return;
+                    }
+                }
+            }
+        });
+
+        // 搜索按钮相关
+        /*mSearchEditText = (SearchEditText) findViewById(R.id.main_search);
+        mSearchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mShowModels.clear();
+                for (ContactModel model : mContactModels) {
+                    String str = Trans2PinYinUtil.trans2PinYin(model.getName());
+                    if (str.contains(s.toString()) || model.getName().contains(s.toString())) {
+                        mShowModels.add(model);
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });*/
     }
 
     private void setWaresier(){
@@ -206,5 +250,6 @@ public class MainActivity extends AppCompatActivity {
             mContactModels.clear();
             mContactModels = null;
         }
-    }
+    };
+
 }
