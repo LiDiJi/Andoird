@@ -16,7 +16,7 @@
         android:layout_below="@+id/top_tab"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -51,10 +51,11 @@
         android:id="@+id/main_side_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/search_go"
+        android:padding="8dp"
         app:sidebar_lazy_respond="false"
-        app:sidebar_text_color="@color/colorAccent"/>
+        app:sidebar_text_color="@color/colorAccent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -66,5 +67,14 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="40dp"
         app:srcCompat="@drawable/ic_library_add_white_48dp" />
+
+    <ImageView
+        android:id="@+id/go_sleep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/search_go"
+        android:layout_gravity="bottom"
+        app:srcCompat="@drawable/ic_sleep_grey_600_48dp" />
 
 </RelativeLayout>

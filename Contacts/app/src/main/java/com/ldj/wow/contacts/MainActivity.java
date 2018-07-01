@@ -1,6 +1,8 @@
 package com.ldj.wow.contacts;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private ContactsAdapter mAdapter;
     private WaveSideBarView mWaveSideBarView;
     private SearchEditText mSearch;
+    private int sleep_state = 0;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -66,7 +69,33 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+        final ImageView sleep_btn = (ImageView) findViewById(R.id.go_sleep);
+        sleep_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sleep_state == 0){
+                    AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                    sleep_state = 1;
+                    Snackbar.make(view, "open", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    sleep_btn.setImageResource(R.drawable.ic_sleep_orange_a200_48dp);
+                }
+                else {
+                    AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+                    sleep_state = 0;
+                    Snackbar.make(view, "close", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    sleep_btn.setImageResource(R.drawable.ic_sleep_grey_600_48dp);
+                }
+            }
+        });
     }
 
     @Override
