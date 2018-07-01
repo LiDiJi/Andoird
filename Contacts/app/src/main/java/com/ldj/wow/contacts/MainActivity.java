@@ -36,65 +36,18 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPageVp = (ViewPager) findViewById(R.id.main_vp);
-        init();
-        //设置状态栏随系统自动变化 （开源库：https://github.com/msdx/status-bar-compat）
-        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);
-    }
 
-
-
-    private void setSelectedTab(){
-        lin_tab_cont = (LinearLayout) findViewById(R.id.lin_tab_cont);
-        lin_tab_cal = (LinearLayout) findViewById(R.id.lin_tab_cal);
-        lin_tab_rec = (LinearLayout) findViewById(R.id.lin_tab_rec);
         cont_tab_text = (TextView) findViewById(R.id.cont_tv);
         cal_tab_text = (TextView) findViewById(R.id.cal_tv);
         rec_tab_text = (TextView) findViewById(R.id.rec_tv);
         tab_line_left = (ImageView) findViewById(R.id.tab_line_left);
         tab_line_mid = (ImageView) findViewById(R.id.tab_line_middle);
         tab_line_right = (ImageView) findViewById(R.id.tab_line_right);
-        lin_tab_cont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cont_tab_text.setTextColor(Color.parseColor("#00CD66"));
-                cal_tab_text.setTextColor(Color.parseColor("#000000"));
-                rec_tab_text.setTextColor(Color.parseColor("#000000"));
-                tab_line_left.setVisibility(View.VISIBLE);
-                tab_line_mid.setVisibility(View.INVISIBLE);
-                tab_line_right.setVisibility(View.INVISIBLE);
-                Toast toast = Toast.makeText(getApplicationContext(), "通讯录", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        lin_tab_cal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cont_tab_text.setTextColor(Color.parseColor("#000000"));
-                cal_tab_text.setTextColor(Color.parseColor("#00CD66"));
-                rec_tab_text.setTextColor(Color.parseColor("#000000"));
-                tab_line_left.setVisibility(View.INVISIBLE);
-                tab_line_mid.setVisibility(View.INVISIBLE);
-                tab_line_right.setVisibility(View.VISIBLE);
-                Toast toast = Toast.makeText(getApplicationContext(), "日历", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        lin_tab_rec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cont_tab_text.setTextColor(Color.parseColor("#000000"));
-                cal_tab_text.setTextColor(Color.parseColor("#000000"));
-                rec_tab_text.setTextColor(Color.parseColor("#00CD66"));
-                tab_line_left.setVisibility(View.INVISIBLE);
-                tab_line_mid.setVisibility(View.VISIBLE);
-                tab_line_right.setVisibility(View.INVISIBLE);
-                Toast toast = Toast.makeText(getApplicationContext(), "通话记录", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+
+        init();
+        //设置状态栏随系统自动变化 （开源库：https://github.com/msdx/status-bar-compat）
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);
     }
-
-
 
 
 
@@ -126,7 +79,32 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                switch (position) {
+                    case 0:
+                        cont_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                        cal_tab_text.setTextColor(Color.parseColor("#000000"));
+                        rec_tab_text.setTextColor(Color.parseColor("#000000"));
+                        tab_line_left.setVisibility(View.VISIBLE);
+                        tab_line_mid.setVisibility(View.INVISIBLE);
+                        tab_line_right.setVisibility(View.INVISIBLE);
+                        break;
+                    case 2:
+                        cont_tab_text.setTextColor(Color.parseColor("#000000"));
+                        cal_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                        rec_tab_text.setTextColor(Color.parseColor("#000000"));
+                        tab_line_left.setVisibility(View.INVISIBLE);
+                        tab_line_mid.setVisibility(View.INVISIBLE);
+                        tab_line_right.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        cont_tab_text.setTextColor(Color.parseColor("#000000"));
+                        cal_tab_text.setTextColor(Color.parseColor("#000000"));
+                        rec_tab_text.setTextColor(Color.parseColor("#00CD66"));
+                        tab_line_left.setVisibility(View.INVISIBLE);
+                        tab_line_mid.setVisibility(View.VISIBLE);
+                        tab_line_right.setVisibility(View.INVISIBLE);
+                        break;
+                }
             }
         });
     }

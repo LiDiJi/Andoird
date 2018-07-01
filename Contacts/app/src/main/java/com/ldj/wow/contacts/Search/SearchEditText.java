@@ -109,12 +109,13 @@ public class SearchEditText extends android.support.v7.widget.AppCompatEditText 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         pressSearch = (keyCode == KeyEvent.KEYCODE_ENTER);
-        if (pressSearch && listener != null && event.getAction() == KeyEvent.ACTION_DOWN) {
+        if (pressSearch && listener != null && event.getAction() == KeyEvent.ACTION_DOWN && v != null) {
             /*隐藏软键盘*/
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm.isActive()) {
                 imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
             }
+            v.clearFocus();
             listener.onSearchClick(v, getText().toString());
         }
         return false;
@@ -126,7 +127,6 @@ public class SearchEditText extends android.support.v7.widget.AppCompatEditText 
         if (drawableDel != null && event.getAction() == MotionEvent.ACTION_UP) {
             eventX = (int) event.getRawX();
             eventY = (int) event.getRawY();
-//            Log.i(TAG, "eventX = " + eventX + "; eventY = " + eventY);
             if (rect == null) rect = new Rect();
             getGlobalVisibleRect(rect);
             rect.left = rect.right - drawableDel.getIntrinsicWidth();

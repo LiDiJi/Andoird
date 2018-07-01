@@ -5,33 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.ldj.wow.contacts.Search.SearchEditText
-        android:id="@+id/search_go"
-        android:layout_below="@+id/top_tab"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginLeft="55dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_parent"
+        android:layout_marginLeft="40dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/search_bg"
-        android:drawablePadding="5dp"
-        android:gravity="center_vertical"
-        android:hint="搜索"
-        android:imeOptions="actionSearch"
-        android:maxLines="1"
-        android:padding="5dp"
-        android:textSize="16sp"
-        android:drawableStart="@drawable/ic_search"
-        app:drawableDel="@drawable/ic_cancel_grey_400_24dp"/>
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <com.ldj.wow.contacts.Search.SearchEditText
+            android:id="@+id/search_go"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/search_bg"
+            android:drawableLeft="@drawable/ic_search_light_green_300_24dp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_search_grey_500_24dp"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textSize="16sp"
+            app:drawableDel="@drawable/ic_cancel_grey_400_24dp"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/mute_audio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
-        android:layout_alignTop="@+id/search_go"
+        android:layout_alignTop="@+id/search_parent"
         android:src="@drawable/ic_alarm_off_grey_600_36dp" />
 
     <android.support.v7.widget.RecyclerView
@@ -39,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/search_go"
+        android:layout_below="@+id/search_parent"
         app:layout_anchorGravity="top|center">
 
     </android.support.v7.widget.RecyclerView>
@@ -49,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/fab"
-        android:layout_below="@+id/search_go" />
+        android:layout_below="@+id/search_parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

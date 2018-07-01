@@ -15,27 +15,17 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Vibrator;
+import android.app.NotificationManager;
+import android.content.Intent;
 
 import com.ldj.wow.contacts.Search.SearchEditText;
 import com.ldj.wow.contacts.Search.Trans2PinYinUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Vibrator;
-import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import cc.solart.wave.WaveSideBarView;
 
 /**
@@ -129,25 +119,12 @@ public class ContactFrag extends Fragment {
             getContext().startActivity(intent);
             return;
         }
-        /*if(sleep_state == 0){
-            AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-            audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            audioManager.getStreamVolume(AudioManager.STREAM_RING);
-
-            currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
-        }
-        mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);*/
 
         mute_mode = (ImageView) view.findViewById(R.id.mute_audio);
                 mute_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (sleep_state == 0){
-                    /*AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);*/
                     AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
                     if(audioManager != null){
                         audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
@@ -162,8 +139,6 @@ public class ContactFrag extends Fragment {
                     mute_mode.setImageResource(R.drawable.ic_alarm_on_light_green_700_36dp);
                 }
                 else {
-                   /* AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);*/
                     AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
                     if(audioManager != null){
                         audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
@@ -193,7 +168,7 @@ public class ContactFrag extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                mSearch.clearFocus();
             }
 
             @Override
