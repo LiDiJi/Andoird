@@ -2,7 +2,9 @@ package com.ldj.wow.contacts;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -21,7 +23,19 @@ import com.ldj.wow.contacts.Search.Trans2PinYinUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import cc.solart.wave.WaveSideBarView;
 
 /**
@@ -37,6 +51,7 @@ public class ContactFrag extends Fragment {
     private SearchEditText mSearch;
     private ImageView mute_mode;
     int sleep_state = 0;
+    int currentVolume = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
@@ -105,26 +120,61 @@ public class ContactFrag extends Fragment {
     }
 
     private void setAudioImageView(View view){
+
         AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-        int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+        NotificationManager notificationManager = (NotificationManager)getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && !notificationManager.isNotificationPolicyAccessGranted()) {
+            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            getContext().startActivity(intent);
+            return;
+        }
+        /*if(sleep_state == 0){
+            AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+            audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+            audioManager.getStreamVolume(AudioManager.STREAM_RING);
+
+            currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+        }
+        mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);*/
+
         mute_mode = (ImageView) view.findViewById(R.id.mute_audio);
                 mute_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (sleep_state == 0){
-//                    AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-//                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                    /*AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);*/
+                    AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+                    if(audioManager != null){
+                        audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                        audioManager.getStreamVolume(AudioManager.STREAM_RING);
+
+                    }
                     sleep_state = 1;
+                    Vibrator vibrator = (Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.cancel();
                     Snackbar.make(view, "open", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     mute_mode.setImageResource(R.drawable.ic_alarm_on_light_green_700_36dp);
                 }
                 else {
-                    AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-                    int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+                   /* AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);*/
+                    AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+                    if(audioManager != null){
+                        audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                        audioManager.getStreamVolume(AudioManager.STREAM_RING);
+
+                    }
+                    audioManager.adjustStreamVolume(AudioManager.STREAM_RING,AudioManager.ADJUST_RAISE,
+                            AudioManager.FX_FOCUS_NAVIGATION_UP);
                     sleep_state = 0;
+                    Vibrator vibrator = (Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(1000);
                     Snackbar.make(view, "close", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     mute_mode.setImageResource(R.drawable.ic_alarm_off_grey_600_36dp);
