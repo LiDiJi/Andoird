@@ -78,12 +78,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (sleep_state == 0){
                     AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
                     mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
                     sleep_state = 1;
                     Snackbar.make(view, "open", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                    sleep_btn.setImageResource(R.drawable.ic_sleep_orange_a200_48dp);
+                    sleep_btn.setImageResource(R.drawable.ic_alarm_on_light_green_700_36dp);
                 }
                 else {
                     AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     sleep_state = 0;
                     Snackbar.make(view, "close", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                    sleep_btn.setImageResource(R.drawable.ic_sleep_grey_600_48dp);
+                    sleep_btn.setImageResource(R.drawable.ic_alarm_off_grey_600_36dp);
                 }
             }
         });

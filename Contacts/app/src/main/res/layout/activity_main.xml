@@ -15,7 +15,7 @@
         android:id="@+id/search_go"
         android:layout_below="@+id/top_tab"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="36dp"
         android:layout_marginLeft="55dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
@@ -30,7 +30,7 @@
         android:maxLines="1"
         android:padding="5dp"
         android:textSize="16sp"
-        app:drawableDel="@drawable/ic_cancel_indigo"/>
+        app:drawableDel="@drawable/ic_cancel_grey_400_24dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recView"
@@ -73,8 +73,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"
         android:layout_alignTop="@+id/search_go"
         android:layout_gravity="bottom"
-        app:srcCompat="@drawable/ic_sleep_grey_600_48dp" />
+        app:srcCompat="@drawable/ic_alarm_off_grey_600_36dp" />
 
 </RelativeLayout>

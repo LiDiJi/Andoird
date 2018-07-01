@@ -32,15 +32,25 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ldj/wow/contacts/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="85" column="83" lean-forward="false" selection-start-line="85" selection-start-column="83" selection-end-line="85" selection-end-column="83" />
+            <state relative-caret-position="300">
+              <caret line="84" column="90" lean-forward="false" selection-start-line="84" selection-start-column="90" selection-end-line="84" selection-end-column="90" />
               <folding>
-                <element signature="e#3000#4211#0" expanded="true" />
-                <element signature="e#4210#4211#0" expanded="true" />
+                <element signature="e#2378#2625#0" expanded="true" />
+                <element signature="e#2624#2625#0" expanded="true" />
+                <element signature="e#3000#4221#0" expanded="true" />
+                <element signature="e#4220#4221#0" expanded="true" />
                 <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#6989#7631#0" expanded="true" />
+                <element signature="e#7630#7631#0" expanded="true" />
+                <element signature="e#7673#8314#0" expanded="true" />
+                <element signature="e#8313#8314#0" expanded="true" />
+                <element signature="e#8356#8999#0" expanded="true" />
+                <element signature="e#8998#8999#0" expanded="true" />
                 <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#10054#10516#0" expanded="true" />
+                <element signature="e#10515#10516#0" expanded="true" />
                 <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
@@ -49,13 +59,13 @@
       </file>
       <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2">
+          <provider editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
@@ -2656,6 +2666,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
@@ -2697,24 +2709,6 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Contacts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
@@ -2731,8 +2725,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -2834,7 +2826,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530412788903" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530413841646" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2882,7 +2874,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530412788903" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530413841646" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3065,7 +3057,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530412788904" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1530413841647" />
       </method>
     </configuration>
     <list size="1">
@@ -3108,7 +3100,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -3117,7 +3108,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32572615" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3246888" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3127,7 +3118,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3180,12 +3171,22 @@
         <state relative-caret-position="650">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3220,12 +3221,22 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3252,12 +3263,22 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3284,12 +3305,22 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3300,12 +3331,22 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3333,12 +3374,22 @@
         <state relative-caret-position="400">
           <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3371,12 +3422,22 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -3565,28 +3626,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ldj/wow/contacts/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="85" column="83" lean-forward="false" selection-start-line="85" selection-start-column="83" selection-end-line="85" selection-end-column="83" />
+        <state relative-caret-position="300">
+          <caret line="84" column="90" lean-forward="false" selection-start-line="84" selection-start-column="90" selection-end-line="84" selection-end-column="90" />
           <folding>
-            <element signature="e#3000#4211#0" expanded="true" />
-            <element signature="e#4210#4211#0" expanded="true" />
+            <element signature="e#2378#2625#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#3000#4221#0" expanded="true" />
+            <element signature="e#4220#4221#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setSelectedTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#6989#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7673#8314#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8356#8999#0" expanded="true" />
+            <element signature="e#8998#8999#0" expanded="true" />
             <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setRecyclerView#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#10054#10516#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
