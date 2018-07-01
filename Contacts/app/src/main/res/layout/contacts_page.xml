@@ -4,27 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.ldj.wow.contacts.Search.SearchEditText
+        android:id="@+id/search_go"
+        android:layout_below="@+id/top_tab"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/search_bg"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:hint="搜索"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_search"
+        app:drawableDel="@drawable/ic_cancel_grey_400_24dp"/>
+
+    <ImageView
+        android:id="@+id/mute_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        android:layout_alignTop="@+id/search_go"
+        android:src="@drawable/ic_alarm_off_grey_600_36dp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/top_tab"
-        app:layout_anchor="@+id/include"
+        android:layout_below="@+id/search_go"
         app:layout_anchorGravity="top|center">
 
     </android.support.v7.widget.RecyclerView>
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main" />
 
     <cc.solart.wave.WaveSideBarView
         android:id="@+id/side_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/fab"
-        android:layout_below="@+id/top_tab" />
+        android:layout_below="@+id/search_go" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -36,4 +61,5 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="44dp"
         app:srcCompat="@drawable/ic_library_add_white_48dp" />
+
 </RelativeLayout>
