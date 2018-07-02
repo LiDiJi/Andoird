@@ -10,15 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Contact联系人适配器
- *
- * @author nanchen
- * @fileName WaveSideBarView
- * @packageName com.nanchen.wavesidebarview
- * @date 2016/12/27  15:33
- * @github https://github.com/nanchen2251
- */
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
 
@@ -33,13 +24,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.contact_item, null);
-        return new ContactsViewHolder(view);
+        ContactsViewHolder viewHolder = new ContactsViewHolder(view);
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ContactsViewHolder holder, int position) {
         ContactModel contact = contacts.get(position);
-        Log.e(TAG, "onBindViewHolder: index:" +contact.getIndex());
         if (position == 0 || !contacts.get(position-1).getIndex().equals(contact.getIndex())) {
             holder.tvIndex.setVisibility(View.VISIBLE);
             holder.tvIndex.setText(contact.getIndex());

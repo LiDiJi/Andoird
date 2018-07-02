@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.githang.statusbar.StatusBarCompat;
+import com.ldj.wow.contacts.FragPage.CalendarFrag;
+import com.ldj.wow.contacts.FragPage.ContactFrag;
+import com.ldj.wow.contacts.FragPage.RecordFrag;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.ldj.wow.contacts;
+package com.ldj.wow.contacts.FragPage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
@@ -23,6 +24,11 @@ import android.os.Vibrator;
 import android.app.NotificationManager;
 import android.content.Intent;
 
+import com.ldj.wow.contacts.ContactModel;
+import com.ldj.wow.contacts.Contacter.AddContacter;
+import com.ldj.wow.contacts.ContactsAdapter;
+import com.ldj.wow.contacts.PinnedHeaderDecoration;
+import com.ldj.wow.contacts.R;
 import com.ldj.wow.contacts.Search.SearchEditText;
 import com.ldj.wow.contacts.Search.Trans2PinYinUtil;
 
@@ -103,8 +109,10 @@ public class ContactFrag extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "onClick", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Activity curActivity = getActivity();
+                Intent intent = new Intent(curActivity, AddContacter.class);
+                startActivity(intent);
+                //curActivity.finish();
             }
         });
     }

@@ -1,10 +1,12 @@
-package com.ldj.wow.contacts;
+package com.ldj.wow.contacts.FragPage;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ldj.wow.contacts.R;
 
 /**
  * Created by wowsc on 2018/6/28.
