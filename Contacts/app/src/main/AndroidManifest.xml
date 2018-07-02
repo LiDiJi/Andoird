@@ -25,6 +25,11 @@
             android:label="AddNew"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Contacter.ContacterShow"
+            android:label="ShowContacter"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

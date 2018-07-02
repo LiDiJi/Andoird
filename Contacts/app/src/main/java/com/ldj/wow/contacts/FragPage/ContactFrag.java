@@ -23,10 +23,13 @@ import java.util.List;
 import android.os.Vibrator;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.ldj.wow.contacts.ContactModel;
 import com.ldj.wow.contacts.Contacter.AddContacter;
+import com.ldj.wow.contacts.Contacter.ContacterShow;
 import com.ldj.wow.contacts.ContactsAdapter;
+import com.ldj.wow.contacts.OnItemClickListener;
 import com.ldj.wow.contacts.PinnedHeaderDecoration;
 import com.ldj.wow.contacts.R;
 import com.ldj.wow.contacts.Search.SearchEditText;
@@ -87,6 +90,14 @@ public class ContactFrag extends Fragment {
         });
         mRecyclerView.addItemDecoration(decoration);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int postion) {
+                Activity curActivity = getActivity();
+                Intent intent = new Intent(curActivity, ContacterShow.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setWaveSideBarView(View view){

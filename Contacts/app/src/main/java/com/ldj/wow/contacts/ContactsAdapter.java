@@ -1,24 +1,24 @@
 package com.ldj.wow.contacts;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import java.util.List;
 
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
 
     private List<ContactModel> contacts;
     private static final String TAG = "ContactsAdapter";
-
+    private OnItemClickListener mClickListener;// 声明自定义的接口
     public ContactsAdapter(List<ContactModel> contacts) {
         this.contacts = contacts;
     }
+
 
     @Override
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,7 +29,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     @Override
-    public void onBindViewHolder(ContactsViewHolder holder, int position) {
+    public void onBindViewHolder(final ContactsViewHolder holder, int position) {
         ContactModel contact = contacts.get(position);
         if (position == 0 || !contacts.get(position-1).getIndex().equals(contact.getIndex())) {
             holder.tvIndex.setVisibility(View.VISIBLE);
@@ -38,6 +38,20 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             holder.tvIndex.setVisibility(View.GONE);
         }
         holder.tvName.setText(contact.getName());
+
+        if (mClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition();
+                    mClickListener.onItemClick(holder.itemView, position);
+                }
+            });
+        }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mClickListener = listener;
     }
 
 
@@ -46,16 +60,4 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         return contacts.size();
     }
 
-    class ContactsViewHolder extends RecyclerView.ViewHolder {
-        TextView tvIndex;
-        ImageView ivAvatar;
-        TextView tvName;
-
-        ContactsViewHolder(View itemView) {
-            super(itemView);
-            tvIndex = (TextView) itemView.findViewById(R.id.tv_index);
-            ivAvatar = (ImageView) itemView.findViewById(R.id.iv_avatar);
-            tvName = (TextView) itemView.findViewById(R.id.tv_name);
-        }
-    }
 }
