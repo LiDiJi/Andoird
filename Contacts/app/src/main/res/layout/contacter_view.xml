@@ -31,9 +31,10 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="45dp"
         android:layout_below="@+id/name"
         android:layout_toStartOf="@+id/head"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/ic_phone_green_600_48dp" />
     <TextView
         android:id="@+id/phoneNumber"
@@ -67,7 +68,7 @@
         android:layout_alignTop="@id/email"
         android:layout_toEndOf="@+id/email"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
         android:text="邮箱"/>
 
 
@@ -90,8 +91,5 @@
         android:text="组织"
         android:textColor="#000044"
         android:textSize="20sp"/>
-
-
-
 
 </RelativeLayout>
