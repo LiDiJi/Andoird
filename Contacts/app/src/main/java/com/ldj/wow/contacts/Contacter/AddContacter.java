@@ -49,6 +49,7 @@ public class AddContacter extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(AddContacter.this, MainActivity.class);
                 startActivity(intent);
+                AddContacter.this.finish();
             }
         });
     }

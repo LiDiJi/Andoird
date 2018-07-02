@@ -96,6 +96,7 @@ public class ContactFrag extends Fragment {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, ContacterShow.class);
                 startActivity(intent);
+                curActivity.finish();
             }
         });
     }
@@ -123,7 +124,7 @@ public class ContactFrag extends Fragment {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, AddContacter.class);
                 startActivity(intent);
-                //curActivity.finish();
+                curActivity.finish();
             }
         });
     }

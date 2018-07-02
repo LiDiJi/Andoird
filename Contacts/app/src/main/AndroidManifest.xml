@@ -23,12 +23,14 @@
         <activity
             android:name=".Contacter.AddContacter"
             android:label="AddNew"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".Contacter.ContacterShow"
             android:label="ShowContacter"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance">
         </activity>
     </application>
 

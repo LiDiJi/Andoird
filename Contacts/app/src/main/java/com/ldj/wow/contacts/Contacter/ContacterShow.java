@@ -29,6 +29,7 @@ public class ContacterShow extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(ContacterShow.this, MainActivity.class);
                 startActivity(intent);
+                ContacterShow.this.finish();
             }
         });
         ContactModel sample = new ContactModel("QIDONG-LAI", "18819253296", "laiqd@mail2..sysu.edu.cn", "School of Dat and Computer Science");
