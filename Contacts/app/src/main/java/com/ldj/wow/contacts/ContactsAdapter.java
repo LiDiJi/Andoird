@@ -14,10 +14,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
     private OnInfoClickListener mInfoClickListener;// 声明自定义的接口
     private OnCallClickListener mCallClickListener;
     private OnMsgClickListener onMsgClickListener;
+
+
     public ContactsAdapter(List<ContactModel> contacts) {
         this.contacts = contacts;
     }
-
 
     @Override
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,13 +38,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
             holder.tvIndex.setVisibility(View.GONE);
         }
         holder.tvName.setText(contact.getName());
-
+        holder.index = contact.getOffset();
         if (mInfoClickListener != null) {
             holder.ivInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition();
-                    mInfoClickListener.onInfoClick(holder.itemView, position);
+                    mInfoClickListener.onInfoClick(holder.itemView, position, holder.index);
                 }
             });
         }
@@ -69,7 +70,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
         }
     }
 
-    public void setOnItemClickListener(OnInfoClickListener listener){
+    public void setOnInfoClickListener(OnInfoClickListener listener){
         this.mInfoClickListener = listener;
     }
 

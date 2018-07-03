@@ -79,7 +79,7 @@ public class ContactFrag extends Fragment {
     private void initData() {
         mContactModels = new ArrayList<>();
         mShowModels = new ArrayList<>();
-        mContactModels.addAll(ContactModel.getContacts());
+        mContactModels.addAll(ContactModel.getContacts(getContext()));
         mShowModels.addAll(mContactModels);
     }
 
@@ -97,11 +97,17 @@ public class ContactFrag extends Fragment {
         });
         mRecyclerView.addItemDecoration(decoration);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new OnInfoClickListener() {
+        mAdapter.setOnInfoClickListener(new OnInfoClickListener() {
             @Override
-            public void onInfoClick(View view, int postion) {
+            public void onInfoClick(View view, int postion, int offset) {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, ContacterShow.class);
+                //用Bundle携带数据
+                Bundle bundle=new Bundle();
+                //传递name参数为tinyphp
+                String str_offset = String.valueOf(offset);
+                bundle.putString("offset", str_offset);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 //curActivity.finish();
             }

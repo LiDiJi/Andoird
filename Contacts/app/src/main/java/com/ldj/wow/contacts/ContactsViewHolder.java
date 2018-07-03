@@ -16,7 +16,7 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder{
     ImageView ivCall;
     ImageView ivMsg;
     ImageView ivInfo;
-    private OnInfoClickListener mListener;// 声明自定义的接口
+    int index;
     ContactsViewHolder(View itemView) {
         super(itemView);
         tvIndex = (TextView) itemView.findViewById(R.id.tv_index);
@@ -25,5 +25,6 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder{
         ivCall = (ImageView) itemView.findViewById(R.id.iv_call);
         ivMsg = (ImageView) itemView.findViewById(R.id.iv_msg);
         ivInfo = (ImageView) itemView.findViewById(R.id.iv_info);
+        index = 0;
     }
 }

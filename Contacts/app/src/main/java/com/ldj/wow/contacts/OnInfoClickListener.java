@@ -7,5 +7,5 @@ import android.view.View;
  */
 
 public interface OnInfoClickListener {
-    public void onInfoClick(View view, int postion);
+    public void onInfoClick(View view, int postion, int offset);
 }

@@ -2,6 +2,7 @@ package com.ldj.wow.contacts.Contacter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.githang.statusbar.StatusBarCompat;
 import com.ldj.wow.contacts.ContactModel;
 import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
+import com.ldj.wow.contacts.dao.ContacterSQL;
 
 /**
  * Created by wowsc on 2018/7/2.
@@ -19,9 +21,15 @@ import com.ldj.wow.contacts.R;
 
 public class ContacterShow extends Activity {
     private ImageView go_back_main;
+    TextView tv_name, tv_phone, tv_email, tv_organization;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacter_view);
+        //新页面接收数据
+        Bundle bundle = this.getIntent().getExtras();
+        //接收name值
+        String str_offset = bundle.getString("offset");
+        int offset = Integer.parseInt(str_offset);
         StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);
         go_back_main = (ImageView) findViewById(R.id.show_back_contact);
         go_back_main.setOnClickListener(new View.OnClickListener() {
@@ -33,15 +41,22 @@ public class ContacterShow extends Activity {
                 ContacterShow.this.finish();
             }
         });
-        ContactModel sample = new ContactModel("QIDONG-LAI", "18819253296", "laiqd@mail2..sysu.edu.cn", "School of Dat and Computer Science");
-        TextView name, phone, email, organization;
-        name = (TextView) findViewById(R.id.name);
-        name.setText(sample.getName());
-        phone = (TextView) findViewById(R.id.phoneNumber);
-        phone.setText(sample.getPhoneNumber());
-        email = (TextView) findViewById(R.id.emailAddress);
-        email.setText(sample.getEmailAddress());
-        organization = (TextView) findViewById(R.id.organizationName);
-        organization.setText(sample.getOrganization());
+        tv_phone = (TextView) findViewById(R.id.phoneNumber);
+        tv_name = (TextView) findViewById(R.id.name);
+        tv_email = (TextView) findViewById(R.id.emailAddress);
+        tv_organization = (TextView) findViewById(R.id.organizationName);
+
+        ContacterSQL contacter = new ContacterSQL(getApplication());
+        Cursor cursor = contacter.query();
+        cursor.moveToFirst();
+        cursor.move(offset);
+        String phone = cursor.getString(cursor.getColumnIndex("tel_number"));
+        String name = cursor.getString(cursor.getColumnIndex("name"));
+        String email = cursor.getString(cursor.getColumnIndex("email"));
+        String organization = cursor.getString(cursor.getColumnIndex("organization"));
+        tv_phone.setText(phone);
+        tv_name.setText(name);
+        tv_email.setText(email);
+        tv_organization.setText(organization);
     }
 }
