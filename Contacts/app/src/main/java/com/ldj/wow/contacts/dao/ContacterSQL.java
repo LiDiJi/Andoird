@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class SQLiteHelper extends SQLiteOpenHelper {
+public class ContacterSQL extends SQLiteOpenHelper {
     private static final String DB_NAME = "contacts.db";
     private static final String TABLE_NAME = "contact";
     private static final String CREATE_TABLE = "create table contact(tel_number varchar primary key,"+
@@ -15,7 +15,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             "email varchar,"+
             "organization varchar);";
     private SQLiteDatabase db;
-    public SQLiteHelper(Context context){
+    public ContacterSQL(Context context){
         super(context,DB_NAME,null,2);
     }
     public void insert(ContentValues values){

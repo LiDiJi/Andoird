@@ -27,8 +27,9 @@ public class ContacterShow extends Activity {
         go_back_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContacterShow.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ContacterShow.this, MainActivity.class);
+//                startActivity(intent);
+                onBackPressed();  //调用系统返回按钮
                 ContacterShow.this.finish();
             }
         });

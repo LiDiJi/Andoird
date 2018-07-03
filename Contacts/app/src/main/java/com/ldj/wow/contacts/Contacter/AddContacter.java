@@ -2,7 +2,6 @@ package com.ldj.wow.contacts.Contacter;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,9 +11,8 @@ import android.widget.EditText;
 
 import com.githang.statusbar.StatusBarCompat;
 import com.ldj.wow.contacts.ContactModel;
-import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
-import com.ldj.wow.contacts.dao.SQLiteHelper;
+import com.ldj.wow.contacts.dao.ContacterSQL;
 
 /**
  * Created by wowsc on 2018/7/2.
@@ -35,7 +33,7 @@ public class AddContacter extends Activity {
         emailText = (EditText) findViewById(R.id.useremail);
         organizationText = (EditText) findViewById(R.id.userorganization);
 
-        final SQLiteHelper dbHelper = new SQLiteHelper(this);
+        final ContacterSQL contacterSQL = new ContacterSQL(this);
 
         Confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +45,7 @@ public class AddContacter extends Activity {
                 else name = nameText.getText().toString();
 
                 if (TextUtils.isEmpty(phoneText.getText())){
-                    phone = "110";
+                    phone = "00001";
                 }
                 else phone = phoneText.getText().toString();
 
@@ -68,7 +66,7 @@ public class AddContacter extends Activity {
                 values.put("name",name);
                 values.put("email",email);
                 values.put("organization",organization);
-                dbHelper.insert(values);
+                contacterSQL.insert(values);
 
 
             }
