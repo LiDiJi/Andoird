@@ -1,18 +1,23 @@
 package com.ldj.wow.contacts.FragPage;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +56,8 @@ public class ContactFrag extends Fragment {
     private SearchEditText mSearch;
     private ImageView mute_mode;
     int sleep_state = 0;
+    private String[] perms = {Manifest.permission.CALL_PHONE};
+    private final int PERMS_REQUEST_CODE = 200;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
@@ -102,17 +109,20 @@ public class ContactFrag extends Fragment {
         mAdapter.setOnCallClickListener(new OnCallClickListener() {
             @Override
             public void onCallClick(View view, int postion) {
-                Activity curActivity = getActivity();
-                Intent intent = new Intent(curActivity, ContacterShow.class);
-                startActivity(intent);
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {//Android 6.0以上版本需要获取权限
+                    requestPermissions(perms, PERMS_REQUEST_CODE);//请求权限
+                } else {
+                    CallPhone("10086");
+                }
             }
         });
         mAdapter.setOnMsgClickListener(new OnMsgClickListener() {
             @Override
             public void onMsgClick(View view, int postion) {
-                Activity curActivity = getActivity();
-                Intent intent = new Intent(curActivity, ContacterShow.class);
-                startActivity(intent);
+                Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+                sendIntent.setData(Uri.parse("smsto:" + "10086"));
+                sendIntent.putExtra("sms_body", "Hello, World!");
+                startActivity(sendIntent);
             }
         });
     }
@@ -219,5 +229,32 @@ public class ContactFrag extends Fragment {
                 mAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    void CallPhone(String number){
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:" + number));
+            startActivity(intent);
+        }
+        else {
+            Activity curActivity = getActivity();
+            Intent intent = new Intent(curActivity, ContacterShow.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+        switch (permsRequestCode) {
+            case PERMS_REQUEST_CODE:
+                boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                if (storageAccepted) {
+                    CallPhone("10086");
+                } else {
+                    Log.i("MainActivity", "没有权限操作这个请求");
+                }
+                break;
+        }
     }
 }
