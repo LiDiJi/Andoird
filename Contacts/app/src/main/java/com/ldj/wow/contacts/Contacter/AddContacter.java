@@ -1,6 +1,7 @@
 package com.ldj.wow.contacts.Contacter;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.githang.statusbar.StatusBarCompat;
 import com.ldj.wow.contacts.ContactModel;
 import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
+import com.ldj.wow.contacts.dao.SQLiteHelper;
 
 /**
  * Created by wowsc on 2018/7/2.
@@ -32,6 +34,8 @@ public class AddContacter extends Activity {
         phoneText = (EditText) findViewById(R.id.userphone);
         emailText = (EditText) findViewById(R.id.useremail);
         organizationText = (EditText) findViewById(R.id.userorganization);
+
+        final SQLiteHelper dbHelper = new SQLiteHelper(this);
 
         Confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +62,15 @@ public class AddContacter extends Activity {
                 else organization = organizationText.getText().toString();
 
                 ContactModel sample = new ContactModel(name, phone, email, organization);
+
+                ContentValues values = new ContentValues();
+                values.put("tel_number",phone);
+                values.put("name",name);
+                values.put("email",email);
+                values.put("organization",organization);
+                dbHelper.insert(values);
+
+
             }
         });
 
@@ -68,7 +81,6 @@ public class AddContacter extends Activity {
 //                startActivity(intent);
                 onBackPressed();  //调用系统返回按钮
                 AddContacter.this.finish();
-
             }
         });
     }
