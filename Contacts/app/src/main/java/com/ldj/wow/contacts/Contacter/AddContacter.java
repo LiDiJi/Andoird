@@ -64,9 +64,11 @@ public class AddContacter extends Activity {
         Cancal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddContacter.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AddContacter.this, MainActivity.class);
+//                startActivity(intent);
+                onBackPressed();  //调用系统返回按钮
                 AddContacter.this.finish();
+
             }
         });
     }
