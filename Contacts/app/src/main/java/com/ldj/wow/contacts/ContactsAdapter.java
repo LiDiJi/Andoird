@@ -4,9 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import java.util.List;
 
 
@@ -14,7 +11,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
 
     private List<ContactModel> contacts;
     private static final String TAG = "ContactsAdapter";
-    private OnItemClickListener mClickListener;// 声明自定义的接口
+    private OnInfoClickListener mInfoClickListener;// 声明自定义的接口
+    private OnCallClickListener mCallClickListener;
+    private OnMsgClickListener onMsgClickListener;
     public ContactsAdapter(List<ContactModel> contacts) {
         this.contacts = contacts;
     }
@@ -39,22 +38,48 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
         }
         holder.tvName.setText(contact.getName());
 
-        if (mClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+        if (mInfoClickListener != null) {
+            holder.ivInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition();
-                    mClickListener.onItemClick(holder.itemView, position);
+                    mInfoClickListener.onInfoClick(holder.itemView, position);
+                }
+            });
+        }
+
+        if (mCallClickListener != null){
+            holder.ivCall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition();
+                    mCallClickListener.onCallClick(holder.itemView, position);
+                }
+            });
+        }
+
+        if (onMsgClickListener != null){
+            holder.ivMsg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition();
+                    onMsgClickListener.onMsgClick(holder.itemView, position);
                 }
             });
         }
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.mClickListener = listener;
+    public void setOnItemClickListener(OnInfoClickListener listener){
+        this.mInfoClickListener = listener;
     }
 
+    public void setOnCallClickListener(OnCallClickListener listener){
+        this.mCallClickListener = listener;
+    }
 
+    public void setOnMsgClickListener(OnMsgClickListener listener){
+        this.onMsgClickListener = listener;
+    }
     @Override
     public int getItemCount() {
         return contacts.size();

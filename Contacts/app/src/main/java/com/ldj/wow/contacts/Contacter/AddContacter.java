@@ -14,6 +14,9 @@ import com.ldj.wow.contacts.ContactModel;
 import com.ldj.wow.contacts.R;
 import com.ldj.wow.contacts.dao.ContacterSQL;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by wowsc on 2018/7/2.
  */
@@ -21,6 +24,7 @@ import com.ldj.wow.contacts.dao.ContacterSQL;
 public class AddContacter extends Activity {
     private Button Confirm_btn;
     private Button Cancal_btn;
+    private List<ContactModel> mContactModels;
     EditText nameText, phoneText, emailText, organizationText;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,7 +36,7 @@ public class AddContacter extends Activity {
         phoneText = (EditText) findViewById(R.id.userphone);
         emailText = (EditText) findViewById(R.id.useremail);
         organizationText = (EditText) findViewById(R.id.userorganization);
-
+        mContactModels = new ArrayList<>();
         final ContacterSQL contacterSQL = new ContacterSQL(this);
 
         Confirm_btn.setOnClickListener(new View.OnClickListener() {
@@ -59,15 +63,12 @@ public class AddContacter extends Activity {
                 }
                 else organization = organizationText.getText().toString();
 
-                ContactModel sample = new ContactModel(name, phone, email, organization);
-
                 ContentValues values = new ContentValues();
                 values.put("tel_number",phone);
                 values.put("name",name);
                 values.put("email",email);
                 values.put("organization",organization);
                 contacterSQL.insert(values);
-
 
             }
         });
