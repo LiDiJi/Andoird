@@ -7,5 +7,5 @@ import android.view.View;
  */
 
 public interface OnCallClickListener {
-    public void onCallClick(View view, int postion);
+    public void onCallClick(View view, int postion, String Phone_number);
 }

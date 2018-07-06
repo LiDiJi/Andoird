@@ -41,6 +41,9 @@ public class MonthView extends CalendarView {
         mRowNum = dates.size() / 7;
     }
 
+    public List<String> getLunarList(){
+        return lunarList;
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -67,12 +70,13 @@ public class MonthView extends CalendarView {
                     //当天和选中的日期不绘制农历
                     if (Utils.isToday(date)) {
                         mSorlarPaint.setColor(mSelectCircleColor);
-                        int centerY = mRowNum == 5 ? rect.centerY() : (rect.centerY() + (mHeight / 5 - mHeight / 6) / 2);
-                        canvas.drawCircle(rect.centerX(), centerY, mSelectCircleRadius, mSorlarPaint);
+                        int CenterY = mRowNum == 5 ? rect.centerY() : (rect.centerY() + (mHeight / 5 - mHeight / 6) / 2);
+                        canvas.drawCircle(rect.centerX(), CenterY, mSelectCircleRadius, mSorlarPaint);
                         mSorlarPaint.setColor(Color.WHITE);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);
-                    } else if (mSelectDate != null && date.equals(mSelectDate)) {
-
+                        drawLunar(canvas, rect, baseline, mLunarTextColor, i, j);
+                    }
+                    else if (mSelectDate != null && date.equals(mSelectDate)) {
                         mSorlarPaint.setColor(mSelectCircleColor);
                         int centerY = mRowNum == 5 ? rect.centerY() : (rect.centerY() + (mHeight / 5 - mHeight / 6) / 2);
                         canvas.drawCircle(rect.centerX(), centerY, mSelectCircleRadius, mSorlarPaint);
@@ -81,6 +85,7 @@ public class MonthView extends CalendarView {
 
                         mSorlarPaint.setColor(mSolarTextColor);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);
+                        drawLunar(canvas, rect, baseline, mLunarTextColor, i, j);
                     } else {
                         mSorlarPaint.setColor(mSolarTextColor);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);

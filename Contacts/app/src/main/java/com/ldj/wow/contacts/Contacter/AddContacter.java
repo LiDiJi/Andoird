@@ -2,6 +2,8 @@ package com.ldj.wow.contacts.Contacter;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,9 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.githang.statusbar.StatusBarCompat;
-import com.ldj.wow.contacts.ContactModel;
+import com.ldj.wow.contacts.ContacterShow.ContactModel;
+import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
-import com.ldj.wow.contacts.dao.ContacterSQL;
+import com.ldj.wow.contacts.DAO.ContacterSQL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +52,8 @@ public class AddContacter extends Activity {
                 else name = nameText.getText().toString();
 
                 if (TextUtils.isEmpty(phoneText.getText())){
-                    phone = "00001";
+                    int x=(int)(Math.random()*100);
+                    phone = "00001"+x;
                 }
                 else phone = phoneText.getText().toString();
 
@@ -69,17 +73,23 @@ public class AddContacter extends Activity {
                 values.put("email",email);
                 values.put("organization",organization);
                 contacterSQL.insert(values);
+                ContacterSQL db = new ContacterSQL(getApplication());
+                Cursor cursor = db.queryAll();
+                cursor.moveToLast();
+                int main_key_id = cursor.getInt(0);
+                Intent intent = new Intent(AddContacter.this, MainActivity.class);
+                intent.putExtra("data_return", name + "," + phone+ "," + email + "," + organization + "," + String.valueOf(main_key_id));
 
+                startActivityForResult(intent, 415);
+                finish();
             }
         });
 
         Cancal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(AddContacter.this, MainActivity.class);
-//                startActivity(intent);
                 onBackPressed();  //调用系统返回按钮
-                AddContacter.this.finish();
+                finish();
             }
         });
     }

@@ -1,7 +1,10 @@
 package com.ldj.wow.contacts;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -14,6 +17,7 @@ import com.githang.statusbar.StatusBarCompat;
 import com.ldj.wow.contacts.FragPage.CalendarFrag;
 import com.ldj.wow.contacts.FragPage.ContactFrag;
 import com.ldj.wow.contacts.FragPage.RecordFrag;
+import com.necer.ncalendar.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +50,6 @@ public class MainActivity extends FragmentActivity {
         tab_line_left = (ImageView) findViewById(R.id.tab_line_left);
         tab_line_mid = (ImageView) findViewById(R.id.tab_line_middle);
         tab_line_right = (ImageView) findViewById(R.id.tab_line_right);
-
         init();
         //设置状态栏随系统自动变化 （开源库：https://github.com/msdx/status-bar-compat）
         StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);

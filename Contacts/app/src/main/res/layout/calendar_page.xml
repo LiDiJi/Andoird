@@ -6,50 +6,149 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
+        android:layout_height="120dp"
+        android:background="#FFFFFF">
 
-        <Button
-            android:id="@+id/toLastMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="上一月" />
 
         <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="2018" />
-
-        <Button
-            android:id="@+id/toNextMonth"
+            android:id="@+id/tv_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:onClick="toNextMonth"
-            android:text="下一月" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="7月"
+            android:textColor="#9E9E9E"
+            android:textSize="35sp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/tv_month"
+            android:layout_alignLeft="@id/tv_month"
+            android:text="2018年"
+            android:textSize="12sp"
+            android:textColor="#B7B7B7" />
 
-    <com.necer.ncalendar.calendar.MonthCalendar
-        android:id="@+id/monthcalendar"
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今天"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#38AE80"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/Today"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/add_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Today"
+            android:layout_below="@+id/Today"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_alarm_add_orange_a400_36dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentStart="true"
+            android:background="#38AE80" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="日"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="一"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="二"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="三"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="四"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="五"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="六"
+                android:textColor="#0f0f0f"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.necer.ncalendar.calendar.NCalendar
+        android:id="@+id/ncalendar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:calendarHeight="300dp" />
+        android:layout_height="match_parent"
+        app:defaultCalendar="Month"
+        app:firstDayOfWeek="Sunday"
+        app:backgroundColor="#FFFFFF"
+        app:selectCircleColor="#00CD66"
+        app:selectCircleRadius="28dp"
+        app:pointColor="#FF4040"
+        app:pointSize="4dp"
+        app:isShowHoliday="true">
 
-
-    <Button
-        android:id="@+id/toToday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="回到今天" />
-
-
+        <!-- 内部需要 RecyclerView 、NestedScrollView 等实现了 NestedScrollingChild 的子类-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/NoteView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"/>
+    </com.necer.ncalendar.calendar.NCalendar>
+    
 </LinearLayout>

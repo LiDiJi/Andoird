@@ -52,7 +52,7 @@ public abstract class CalendarView extends View {
     protected List<String> holidayList;
     protected List<String> workdayList;
     protected List<String> pointList;
-
+    private List<String> LunarDate;
     public CalendarView(Context context) {
         super(context);
         mSolarTextColor = Attrs.solarTextColor;
@@ -79,6 +79,7 @@ public abstract class CalendarView extends View {
 
         holidayList = Utils.getHolidayList(getContext());
         workdayList = Utils.getWorkdayList(getContext());
+
     }
 
     private Paint getPaint(int paintColor, float paintSize) {

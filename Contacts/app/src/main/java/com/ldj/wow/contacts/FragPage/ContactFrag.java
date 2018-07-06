@@ -28,11 +28,12 @@ import java.util.List;
 import android.os.Vibrator;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.widget.Toast;
 
-import com.ldj.wow.contacts.ContactModel;
+import com.ldj.wow.contacts.ContacterShow.ContactModel;
 import com.ldj.wow.contacts.Contacter.AddContacter;
 import com.ldj.wow.contacts.Contacter.ContacterShow;
-import com.ldj.wow.contacts.ContactsAdapter;
+import com.ldj.wow.contacts.ContacterShow.ContactsAdapter;
 import com.ldj.wow.contacts.OnCallClickListener;
 import com.ldj.wow.contacts.OnInfoClickListener;
 import com.ldj.wow.contacts.OnMsgClickListener;
@@ -58,6 +59,7 @@ public class ContactFrag extends Fragment {
     int sleep_state = 0;
     private String[] perms = {Manifest.permission.CALL_PHONE};
     private final int PERMS_REQUEST_CODE = 200;
+    private String Number_toCall = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
@@ -99,34 +101,35 @@ public class ContactFrag extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnInfoClickListener(new OnInfoClickListener() {
             @Override
-            public void onInfoClick(View view, int postion, int offset) {
+            public void onInfoClick(View view, int postion, int main_id) {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, ContacterShow.class);
                 //用Bundle携带数据
                 Bundle bundle=new Bundle();
                 //传递name参数为tinyphp
-                String str_offset = String.valueOf(offset);
-                bundle.putString("offset", str_offset);
+                String id = String.valueOf(main_id);
+                bundle.putString("main_id", id);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                //curActivity.finish();
+                curActivity.finish();
             }
         });
         mAdapter.setOnCallClickListener(new OnCallClickListener() {
             @Override
-            public void onCallClick(View view, int postion) {
+            public void onCallClick(View view, int postion, String number) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {//Android 6.0以上版本需要获取权限
+                    Number_toCall = number;
                     requestPermissions(perms, PERMS_REQUEST_CODE);//请求权限
                 } else {
-                    CallPhone("10086");
+                    CallPhone(number);
                 }
             }
         });
         mAdapter.setOnMsgClickListener(new OnMsgClickListener() {
             @Override
-            public void onMsgClick(View view, int postion) {
+            public void onMsgClick(View view, int postion, String number) {
                 Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
-                sendIntent.setData(Uri.parse("smsto:" + "10086"));
+                sendIntent.setData(Uri.parse("smsto:" + number));
                 sendIntent.putExtra("sms_body", "Hello, World!");
                 startActivity(sendIntent);
             }
@@ -138,7 +141,7 @@ public class ContactFrag extends Fragment {
         mWaveSideBarView.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
             @Override
             public void onSelectIndexItem(String letter) {
-                for (int i=0; i<mContactModels.size(); i++) {
+                for (int i = 0; i<mContactModels.size(); i++) {
                     if (mContactModels.get(i).getIndex().equals(letter)) {
                         ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(i, 0);
                         return;
@@ -156,9 +159,49 @@ public class ContactFrag extends Fragment {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, AddContacter.class);
                 startActivity(intent);
-                //curActivity.finish();
+                curActivity.finish();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 415:
+                String returnedData = data.getStringExtra("data_return");
+                String[] value_col = returnedData.split(",");
+                int main_id = Integer.parseInt(value_col[4]);
+                char in0 = value_col[0].toLowerCase().charAt(0);
+                int i;
+                for (i = 0;i < mContactModels.size();) {
+                    String in1 = mContactModels.get(i).getIndex().toLowerCase();
+                    if(in0 > in1.charAt(0)){
+                        i++;
+                    }
+                    else break;
+                }
+                mContactModels.add(i, new ContactModel(value_col[0], value_col[1], value_col[2], value_col[3], main_id));
+                mShowModels.clear();
+                mShowModels.addAll(mContactModels);
+                mAdapter.notifyDataSetChanged();
+                break;
+            case 423:
+                String deleted_id = data.getStringExtra("delte_model_id");
+                int id = Integer.parseInt(deleted_id);
+                for (i = 0;i < mContactModels.size();) {
+                    int main_key = mContactModels.get(i).getId();
+                    if (main_key == id){
+                        mContactModels.remove(i);
+                        break;
+                    }
+                }
+                mShowModels.clear();
+                mShowModels.addAll(mContactModels);
+                mAdapter.notifyDataSetChanged();
+                break;
+            default:
+                break;
+        }
     }
 
     private void setAudioImageView(View view){
@@ -181,7 +224,6 @@ public class ContactFrag extends Fragment {
                     if(audioManager != null){
                         audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
                         audioManager.getStreamVolume(AudioManager.STREAM_RING);
-
                     }
                     sleep_state = 1;
                     Vibrator vibrator = (Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
@@ -256,7 +298,7 @@ public class ContactFrag extends Fragment {
             case PERMS_REQUEST_CODE:
                 boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 if (storageAccepted) {
-                    CallPhone("10086");
+                    CallPhone(Number_toCall);
                 } else {
                     Log.i("MainActivity", "没有权限操作这个请求");
                 }

@@ -7,5 +7,5 @@ import android.view.View;
  */
 
 public interface OnMsgClickListener {
-    public void onMsgClick(View view, int postion);
+    public void onMsgClick(View view, int postion, String phone_num);
 }

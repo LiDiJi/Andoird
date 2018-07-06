@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/view">
+    </View>
+
+    <TextView
+        android:id="@+id/note_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_note"
+        android:layout_below="@+id/view"
+        android:text="时间" />
+
+    <TextView
+        android:id="@+id/note_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/note_title"
+        android:layout_alignEnd="@+id/tv_note"
+        android:text="地点" />
+
+    <TextView
+        android:id="@+id/note_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/note_day"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="标题" />
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/note_title"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/search_bg"
+        android:padding="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="提醒内容"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/delete_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tv_note"
+        android:layout_below="@+id/tv_note"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_cancel_grey_400_24dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/delete_note">
+    </View>
+
+</RelativeLayout>
