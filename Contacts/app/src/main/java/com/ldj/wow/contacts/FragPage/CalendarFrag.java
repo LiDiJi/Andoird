@@ -35,6 +35,7 @@ import org.joda.time.LocalDate;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -83,6 +84,7 @@ public class CalendarFrag extends Fragment {
         });
         mShowNoteModel = new ArrayList<>();
         mShowNoteModel.addAll(NoteModel.getNotes(getContext()));
+        Collections.sort(mShowNoteModel);
         Point_list = new ArrayList<>();
         for (int i = 0;i < mShowNoteModel.size();i++){
             if (!Point_list.contains(mShowNoteModel.get(i).getDay())){
@@ -127,6 +129,7 @@ public class CalendarFrag extends Fragment {
                                         break;
                                     }
                                 }
+                                Collections.sort(mShowNoteModel);
                                 noteAdapter.notifyDataSetChanged();
                                 for (int j = 0;j < Point_list.size();j++){
                                     if (Point_list.get(j).equals(remove_date)){
@@ -182,6 +185,7 @@ public class CalendarFrag extends Fragment {
                         int main_key_id = cursor.getInt(0);
                         NoteModel noteModel = new NoteModel(title, txt, day, place, main_key_id);
                         mShowNoteModel.add(noteModel);
+                        Collections.sort(mShowNoteModel);
                         noteAdapter.notifyDataSetChanged();
                         Point_list.add(noteModel.getDay());
                         ncalendar.post(new Runnable() {

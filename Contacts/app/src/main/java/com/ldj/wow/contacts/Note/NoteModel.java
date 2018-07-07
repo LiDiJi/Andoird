@@ -3,21 +3,16 @@ package com.ldj.wow.contacts.Note;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.ldj.wow.contacts.ContacterShow.ContactModel;
-import com.ldj.wow.contacts.DAO.ContacterSQL;
 import com.ldj.wow.contacts.DAO.NoteSQL;
-import com.ldj.wow.contacts.FirstLetterUtil;
-import com.ldj.wow.contacts.LetterComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by wowsc on 2018/7/6.
  */
 
-public class NoteModel {
+public class NoteModel implements Comparable<NoteModel> {
     private String note_txt, day, place,title;
     private int id;
     public NoteModel() {
@@ -82,7 +77,11 @@ public class NoteModel {
             int main_id = cursor.getInt(0);
             notes.add(new NoteModel(title, txt, day, place, main_id));
         }
-        //Collections.sort(notes, new LetterComparator());
         return notes;
+    }
+
+    public int compareTo(NoteModel noteModel) {
+        if (day.compareTo(noteModel.getDay()) > 0) return -1;
+        else return 1;
     }
 }
