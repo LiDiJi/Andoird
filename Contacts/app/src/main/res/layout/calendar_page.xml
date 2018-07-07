@@ -137,7 +137,7 @@
         app:defaultCalendar="Month"
         app:firstDayOfWeek="Sunday"
         app:backgroundColor="#FFFFFF"
-        app:selectCircleColor="#00CD66"
+        app:selectCircleColor="#90EE90"
         app:selectCircleRadius="28dp"
         app:pointColor="#FF4040"
         app:pointSize="4dp"

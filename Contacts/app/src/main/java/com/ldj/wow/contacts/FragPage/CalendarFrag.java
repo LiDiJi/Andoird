@@ -85,7 +85,9 @@ public class CalendarFrag extends Fragment {
         mShowNoteModel.addAll(NoteModel.getNotes(getContext()));
         Point_list = new ArrayList<>();
         for (int i = 0;i < mShowNoteModel.size();i++){
-            Point_list.add(mShowNoteModel.get(i).getDay());
+            if (!Point_list.contains(mShowNoteModel.get(i).getDay())){
+                Point_list.add(mShowNoteModel.get(i).getDay());
+            }
         }
         ncalendar.post(new Runnable() {
             @Override
@@ -117,13 +119,27 @@ public class CalendarFrag extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 NoteSQL db = new NoteSQL(getContext());
                                 db.del(main_id);
+                                String remove_date = "";
                                 for (int j = 0;j < mShowNoteModel.size();j++){
                                     if (mShowNoteModel.get(j).getId() == main_id){
+                                        remove_date = mShowNoteModel.get(j).getDay();
                                         mShowNoteModel.remove(j);
                                         break;
                                     }
                                 }
                                 noteAdapter.notifyDataSetChanged();
+                                for (int j = 0;j < Point_list.size();j++){
+                                    if (Point_list.get(j).equals(remove_date)){
+                                        Point_list.remove(j);
+                                        break;
+                                    }
+                                }
+                                ncalendar.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ncalendar.setPoint(Point_list);
+                                    }
+                                });
                             }
                         });
                 AlertDialog dialog = builder.create();

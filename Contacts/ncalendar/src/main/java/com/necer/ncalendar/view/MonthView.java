@@ -75,6 +75,7 @@ public class MonthView extends CalendarView {
                         mSorlarPaint.setColor(Color.WHITE);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);
                         drawLunar(canvas, rect, baseline, mLunarTextColor, i, j);
+                        drawPoint(canvas, rect, date, baseline);
                     }
                     else if (mSelectDate != null && date.equals(mSelectDate)) {
                         mSorlarPaint.setColor(mSelectCircleColor);
@@ -86,6 +87,7 @@ public class MonthView extends CalendarView {
                         mSorlarPaint.setColor(mSolarTextColor);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);
                         drawLunar(canvas, rect, baseline, mLunarTextColor, i, j);
+                        drawPoint(canvas, rect, date, baseline);
                     } else {
                         mSorlarPaint.setColor(mSolarTextColor);
                         canvas.drawText(date.getDayOfMonth() + "", rect.centerX(), baseline, mSorlarPaint);
