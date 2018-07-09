@@ -106,17 +106,19 @@ public class AddContacter extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 423){
-            Bundle bundle = data.getExtras();
-            String scanData = data.getStringExtra("result");
-            String[] value_col = scanData.split(",");
-            String phone = value_col[1];//name + phone + email + org
-            String name = value_col[0];
-            String email = value_col[2];
-            String organization = value_col[3];
-            nameText.setText(name);
-            phoneText.setText(phone);
-            emailText.setText(email);
-            organizationText.setText(organization);
+            if (data != null){
+                Bundle bundle = data.getExtras();
+                String scanData = data.getStringExtra("result");
+                String[] value_col = scanData.split(",");
+                String phone = value_col[1];//name + phone + email + org
+                String name = value_col[0];
+                String email = value_col[2];
+                String organization = value_col[3];
+                nameText.setText(name);
+                phoneText.setText(phone);
+                emailText.setText(email);
+                organizationText.setText(organization);
+            }
         }
     }
 }
