@@ -111,7 +111,7 @@ public class ContactFrag extends Fragment {
                 bundle.putString("main_id", id);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                curActivity.finish();
+                //curActivity.finish();
             }
         });
         mAdapter.setOnCallClickListener(new OnCallClickListener() {
@@ -159,7 +159,7 @@ public class ContactFrag extends Fragment {
                 Activity curActivity = getActivity();
                 Intent intent = new Intent(curActivity, AddContacter.class);
                 startActivity(intent);
-                curActivity.finish();
+                //curActivity.finish();
             }
         });
     }

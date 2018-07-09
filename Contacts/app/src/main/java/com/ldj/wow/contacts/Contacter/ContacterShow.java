@@ -1,6 +1,7 @@
 package com.ldj.wow.contacts.Contacter;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,10 +9,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.githang.statusbar.StatusBarCompat;
+import com.ldj.wow.contacts.HotelActivity;
 import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
 import com.ldj.wow.contacts.DAO.ContacterSQL;
@@ -24,6 +27,7 @@ public class ContacterShow extends Activity {
     private ImageView go_back_main, go_delete;
     TextView tv_name, tv_phone, tv_email, tv_organization;
     int main_id;
+    private Button QRCode_btn;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacter_view);
@@ -34,6 +38,7 @@ public class ContacterShow extends Activity {
         main_id = Integer.parseInt(str_offset);
         StatusBarCompat.setStatusBarColor(this, Color.parseColor("#FFFFFF"),true);
         go_back_main = (ImageView) findViewById(R.id.show_back_contact);
+        QRCode_btn = (Button) findViewById(R.id.QRCode_existed);
         go_back_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +73,29 @@ public class ContacterShow extends Activity {
         tv_email.setText(email);
         tv_organization.setText(organization);
         cursor.close();
+        QRCode_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name, phone, email, organization;
+                name = tv_name.getText().toString();
+                phone = tv_phone.getText().toString();
+                email = tv_email.getText().toString();
+                organization = tv_organization.getText().toString();
+
+                ContentValues values = new ContentValues();
+                values.put("tel_number",phone);
+                values.put("name",name);
+                values.put("email",email);
+                values.put("organization",organization);
+                ContacterSQL db = new ContacterSQL(getApplication());
+                Cursor cursor = db.queryAll();
+                cursor.moveToLast();
+                int main_key_id = cursor.getInt(0);
+                Intent intent = new Intent(ContacterShow.this, HotelActivity.class);
+                intent.putExtra("data_return", name + "," + phone+ "," + email + "," + organization + "," + String.valueOf(main_key_id));
+                startActivity(intent);
+            }
+        });
     }
 
     private void showDialog(){

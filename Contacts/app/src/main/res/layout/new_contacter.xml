@@ -19,6 +19,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:src="@drawable/head" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+    </LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,6 +101,19 @@
                 android:textColor="#EE7942"
                 android:textSize="20dp"/>
         </LinearLayout>
+
+
     </LinearLayout>
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:id="@+id/scanQR"
+        android:textSize="20dp"
+        android:background="@drawable/qr_scanner"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        />
+
 
 </RelativeLayout>

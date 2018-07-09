@@ -1,1 +1,1 @@
-include ':app', ':wave', ':ncalendar'
+include ':app', ':wave', ':ncalendar', ':libzxing'

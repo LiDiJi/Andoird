@@ -16,6 +16,7 @@ import com.ldj.wow.contacts.ContacterShow.ContactModel;
 import com.ldj.wow.contacts.MainActivity;
 import com.ldj.wow.contacts.R;
 import com.ldj.wow.contacts.DAO.ContacterSQL;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.List;
 public class AddContacter extends Activity {
     private Button Confirm_btn;
     private Button Cancal_btn;
+    private Button btn_scan;
     private List<ContactModel> mContactModels;
     EditText nameText, phoneText, emailText, organizationText;
     protected void onCreate(Bundle savedInstanceState){
@@ -41,7 +43,14 @@ public class AddContacter extends Activity {
         organizationText = (EditText) findViewById(R.id.userorganization);
         mContactModels = new ArrayList<>();
         final ContacterSQL contacterSQL = new ContacterSQL(this);
-
+        btn_scan = (Button) findViewById(R.id.scanQR);
+        btn_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(AddContacter.this, CaptureActivity.class);
+                startActivityForResult(intent, 423);
+            }
+        });
         Confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,5 +101,22 @@ public class AddContacter extends Activity {
                 finish();
             }
         });
+    }
+    //处理扫描后的结果
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 423){
+            Bundle bundle = data.getExtras();
+            String scanData = data.getStringExtra("result");
+            String[] value_col = scanData.split(",");
+            String phone = value_col[1];//name + phone + email + org
+            String name = value_col[0];
+            String email = value_col[2];
+            String organization = value_col[3];
+            nameText.setText(name);
+            phoneText.setText(phone);
+            emailText.setText(email);
+            organizationText.setText(organization);
+        }
     }
 }
